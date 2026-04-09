@@ -2,18 +2,16 @@
   pkgs,
   nixvim,
   system,
-  lib,
   stdenv,
   ...
-}:
+}@args:
 
 (nixvim.legacyPackages.${system}.makeNixvimWithModule {
   inherit pkgs;
   module = {
-    clipboard = {
-      providers = {
-        wl-copy.enable = lib.strings.hasPrefix "linux" stdenv.hostPlatform.system;
-      };
-    };
+    imports = [
+      ./modules
+    ];
   };
+  extraSpecialArgs = args;
 })

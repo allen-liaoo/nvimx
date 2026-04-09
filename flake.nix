@@ -11,7 +11,6 @@
     systems = [
       "x86_64-linux"
       "aarch64-linux"
-      "x86_64-darwin"
       "aarch64-darwin"
     ];
     forEachSystem = nixpkgs.lib.genAttrs systems;
@@ -21,7 +20,7 @@
     in {
       default = import ./nixvim.nix {
         inherit system pkgs nixvim;
-        inherit (pkgs) lib stdenv;
+        inherit (pkgs) stdenv;
       };
     });
   };
