@@ -9,7 +9,7 @@
 
 {
   imports = [
-    ./lsp.nix
+    ./buffer.nix
     ./plugins
   ];
   enableMan = false;

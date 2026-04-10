@@ -13,7 +13,7 @@
   keymaps = [
     {
       action = "<cmd>Yazi<CR>";
-      key = "<leader>o";
+      key = "<leader>-";
       mode = [ "n" "i" "x" "s" ];
       options.desc = "Open files via Yazi.";
     }
