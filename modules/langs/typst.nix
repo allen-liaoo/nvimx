@@ -5,6 +5,4 @@ _:
     enable = true;
     activate = true;
   };
-
-  dependencies.tinymist.enable = true;
 }
