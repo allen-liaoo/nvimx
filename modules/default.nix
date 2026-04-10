@@ -7,9 +7,9 @@
   ...
 }:
 
- {
+{
   imports = [
-    ./plugins.nix
+    ./plugins
   ];
   enableMan = false;
   colorschemes.one = {
@@ -19,12 +19,15 @@
     };
   };
 
+  globals = {
+    mapleader = ",";
+  };
+
   opts = {
     mouse = "a"; # mouse support: all modes
     mousemodel = "extend"; # mouse selection
     clipboard = "unnamedplus"; # y, p integrate w system clipboard
     number = true; # lineno
-    relativenumber = true;
     termguicolors = true;
     # indent
     tabstop = 2;
@@ -39,4 +42,4 @@
       wl-copy.enable = lib.strings.hasPrefix "linux" stdenv.hostPlatform.system;
     };
   };
- }
+}
