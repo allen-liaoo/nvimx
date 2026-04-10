@@ -8,7 +8,10 @@
   ];
 
   plugins = {
-    bufferline.enable = true;
+    bufferline = {
+      enable = true;
+      settings.options.always_show_bufferline = false;
+    };
 
     cursorline.enable = true;
 
