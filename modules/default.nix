@@ -9,7 +9,7 @@
 
 {
   imports = [
-    ./buffer.nix
+    ./keys.nix
     ./plugins
   ];
   enableMan = false;

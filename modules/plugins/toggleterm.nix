@@ -35,19 +35,32 @@ _:
       action = "<cmd>TermBuf<CR>";
       key = "<leader>tt";
       mode = [ "n" "i" "x" "s" ];
-      options.desc = "Open terminal (new tab)";
+      options.desc = "Terminal: Open in new tab";
     }
     {
       action = "<cmd>ToggleTerm direction=horizontal<CR>";
       key = "<leader>th";
       mode = [ "n" "i" "x" "s" ];
-      options.desc = "Toggle terminal (horizontal)";
+      options.desc = "Terminal: Toggle horizontal";
     }
     {
       action = "<cmd>ToggleTerm direction=vertical<CR>";
       key = "<leader>tv";
       mode = [ "n" "i" "x" "s" ];
-      options.desc = "Toggle terminal (vertical)";
+      options.desc = "Terminal: Toggle vertical";
+    }
+    # keymaps in terminal mode
+    {
+      action = "<C-\\><C-n>";
+      key = "<esc>";
+      mode = [ "t" ];
+      options.desc = "Escape terminal";
+    }
+    {
+      action = "<C-w>";
+      key = "<C-\\><C-n><C-w>";
+      mode = [ "t" ];
+      options.desc = "Use window commands as normal";
     }
   ];
 }

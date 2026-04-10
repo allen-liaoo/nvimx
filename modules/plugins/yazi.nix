@@ -15,7 +15,7 @@
       action = "<cmd>Yazi<CR>";
       key = "<leader>-";
       mode = [ "n" "i" "x" "s" ];
-      options.desc = "Open files via Yazi.";
+      options.desc = "Yazi: Open files";
     }
   ];
 }

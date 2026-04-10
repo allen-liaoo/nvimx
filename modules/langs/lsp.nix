@@ -22,22 +22,22 @@ _:
       {
         key = "gd";
         lspBufAction = "definition";
-        options.desc = "Go to definition";
+        options.desc = "LSP: Go to definition";
       }
       {
         key = "gD";
         lspBufAction = "references";
-        options.desc = "Go to references";
+        options.desc = "LSP: Go to references";
       }
       {
         key = "gt";
         lspBufAction = "type_definition";
-        options.desc = "Go to type definition";
+        options.desc = "LSP: Go to type definition";
       }
       {
         key = "gi";
         lspBufAction = "implementation";
-        options.desc = "Go to implementation";
+        options.desc = "LSP: Go to implementation";
       }
       {
         key = "K";
