@@ -12,10 +12,11 @@
     ./plugins
   ];
   enableMan = false;
-  colorschemes.one = {
+
+  colorschemes.onedark = {
     enable = true;
     settings = {
-      style = "darker";
+      style = "cool";
     };
   };
 
@@ -26,7 +27,6 @@
   opts = {
     mouse = "a"; # mouse support: all modes
     mousemodel = "extend"; # mouse selection
-    clipboard = "unnamedplus"; # y, p integrate w system clipboard
     number = true; # lineno
     termguicolors = true;
     # indent
@@ -38,6 +38,7 @@
   };
 
   clipboard = {
+    register = "unnamedplus"; # y, p integrate w system clipboard
     providers = {
       wl-copy.enable = lib.strings.hasPrefix "linux" stdenv.hostPlatform.system;
     };

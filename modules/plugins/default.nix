@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ./blink-cmp.nix
+    ./toggleterm.nix
     ./yazi.nix
   ];
 
@@ -33,6 +35,14 @@
       settings = {
         color_icons = true;
         strict = true;
+      };
+    };
+
+    which-key = {
+      enable = true;
+      settings = {
+        preset = "helix";
+        win.wo.winblend = 10; # 0-100, opaque to transparent
       };
     };
   };

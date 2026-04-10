@@ -13,12 +13,9 @@
   keymaps = [
     {
       action = "<cmd>Yazi<CR>";
-      key = "<leader>-";
+      key = "<leader>o";
       mode = [ "n" "i" "x" "s" ];
-    }
-    {
-      action = "<cmd>Yazi cwd<CR>";
-      key = "<leader>cw<CR>";
+      options.desc = "Open files via Yazi.";
     }
   ];
 }
