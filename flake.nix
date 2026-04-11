@@ -35,7 +35,7 @@
         inherit (pkgs) stdenv;
       }
     );
-  in {
+  in rec {
     inherit nixvimModules;
     makeNixvimWithModule = system: m:
       let 
@@ -57,5 +57,22 @@
         }
       ) nixvimModules 
     );
+
+    devShells = forEachSystem (system: let
+      pkgs = pkgsOf system;
+    in {
+      default = pkgs.mkShell (let
+        nixvimModule = {
+          imports = [ nixvimModules.nix ];
+          nvimx.nixd = { # enable lsp to lookup of nixvim options
+            nixpkgsName = "nixpkgs";
+            flakeInputs.nixvim = "nixvimConfigurations.${system}.default";
+          };
+        };
+        nixvimPkg = makeNixvimWithModule system nixvimModule;
+      in {
+        packages = [ nixvimPkg ];
+      });
+    });
   };
 }
