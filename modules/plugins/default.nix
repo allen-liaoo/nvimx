@@ -3,6 +3,8 @@
 {
   imports = [
     ./blink-cmp.nix
+    ./flash.nix
+    ./telescope.nix
     ./toggleterm.nix
     ./yazi.nix
   ];
