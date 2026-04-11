@@ -31,6 +31,7 @@
     number = true; # lineno
     cursorline = true;
     termguicolors = true;
+
     # indent
     tabstop = 2;
     shiftwidth = 2;

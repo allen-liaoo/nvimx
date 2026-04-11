@@ -4,6 +4,7 @@
   imports = [
     ./blink-cmp.nix
     ./flash.nix
+    ./lualine.nix
     ./telescope.nix
     ./toggleterm.nix
     ./yazi.nix
@@ -20,15 +21,6 @@
     indent-blankline = {
       enable = true;
       settings.indent.char = "¦";
-    };
-
-    lualine = {
-      enable = true;
-      settings = {
-        options = {
-          globalstatus = true; # one status line at the bottom
-        };
-      };
     };
 
     nvim-surround.enable = true;

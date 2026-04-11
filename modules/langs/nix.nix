@@ -3,7 +3,7 @@ _:
 {
   imports = [ ./lsp.nix ];
 
-  lsp.servers.tinymist = {
+  lsp.servers.nixd = {
     enable = true;
     activate = true;
   };

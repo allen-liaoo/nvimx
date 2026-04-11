@@ -22,9 +22,13 @@
           inherit pkgs nixvim system;
           inherit (pkgs) stdenv;
         };
-      in {
+      in rec {
         default = { 
           imports = [ ./modules ];
+        };
+        base = default;
+        nix = {
+          imports = [ ./modules ./modules/langs/nix.nix ];
         };
         typst = {
           imports = [ ./modules ./modules/langs/typst.nix ];
