@@ -13,32 +13,45 @@
       "aarch64-linux"
       "aarch64-darwin"
     ];
+    nixvimModules = rec {
+      default = { 
+        imports = [ ./modules ];
+      };
+      base = default;
+      nix = {
+        imports = [ ./modules ./modules/langs/nix.nix ];
+      };
+      typst = {
+        imports = [ ./modules ./modules/langs/typst.nix ];
+      };
+    };
     forEachSystem = nixpkgs.lib.genAttrs systems;
+    pkgsOf = system: nixpkgs.legacyPackages.${system};
+    moduleArgs = system: (let 
+      pkgs = pkgsOf system;
+    in {
+      inherit pkgs nixvim system;
+      inherit (pkgs) stdenv;
+    });
   in {
+    inherit nixvimModules;
+    makeNixvimWithModule = system: m:
+      nixvim.legacyPackages.${system}.makeNixvimWithModule {
+        module = m;
+        extraSpecialArgs = moduleArgs system;
+        inherit pkgsOf system;
+      };
+
     packages = forEachSystem (system: 
       let 
-        pkgs = nixpkgs.legacyPackages.${system};
-        args = {
-          inherit pkgs nixvim system;
-          inherit (pkgs) stdenv;
-        };
-      in rec {
-        default = { 
-          imports = [ ./modules ];
-        };
-        base = default;
-        nix = {
-          imports = [ ./modules ./modules/langs/nix.nix ];
-        };
-        typst = {
-          imports = [ ./modules ./modules/langs/typst.nix ];
-        };
-      }
-      |> pkgs.lib.mapAttrs (_: v: nixvim.legacyPackages.${system}.makeNixvimWithModule {
-        module = v;
-        extraSpecialArgs = args;
-        inherit pkgs;
-      })
+        pkgs = pkgsOf system;
+      in pkgs.lib.mapAttrs (_: v: 
+        nixvim.legacyPackages.${system}.makeNixvimWithModule {
+          module = v;
+          extraSpecialArgs = moduleArgs system;
+          inherit pkgs;
+        }
+      ) nixvimModules 
     );
   };
 }
