@@ -38,10 +38,12 @@
   in {
     inherit nixvimModules;
     makeNixvimWithModule = system: m:
-      nixvim.legacyPackages.${system}.makeNixvimWithModule {
+      let 
+        pkgs = pkgsOf system;
+      in nixvim.legacyPackages.${system}.makeNixvimWithModule {
         module = m;
         extraSpecialArgs = moduleArgs system;
-        inherit pkgsOf system;
+        inherit pkgs;
       };
 
     packages = forEachSystem (system: 
