@@ -6,5 +6,8 @@ _:
   lsp.servers.nixd = {
     enable = true;
     activate = true;
+    settings.nixd = {
+      diagnostic.suppress = [ "sema-extra-with" ];
+    };
   };
 }
