@@ -92,5 +92,8 @@ _:
     end
   '';
 
-  dependencies.ripgrep.enable = true;
+  dependencies.ripgrep = {
+    enable = true;
+    packageFallback = true;
+  };
 }

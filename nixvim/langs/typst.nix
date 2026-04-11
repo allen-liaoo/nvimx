@@ -7,4 +7,9 @@ _:
     enable = true;
     activate = true;
   };
+
+  dependencies.typst = {
+    enable = true;
+    packageFallback = true; # let local version override this
+  };
 }

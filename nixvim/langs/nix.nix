@@ -29,7 +29,7 @@
         description = ''Mapping of input name in flake to path to lookup its options.
           If the module is at \"inputs.stylix.homeModules.stylix\", then write \"stylix\" = \"homeModules.stylix\";
         '';
-        default = "";
+        default = { };
       };
       inFlake = lib.mkOption {
         type = lib.types.bool;
@@ -54,7 +54,6 @@
 
     # Can't get it to work with config in native nixvim
     lsp.luaConfig.post = let
-      flakeExpr = ''(builtins.getFlake (builtins.toString ./.))''; # should be the flake one runs nixvim in
       wrapInQuotes = s: s |> lib.splitString "." |> map (s': ''\"${s'}\"'') |> builtins.concatStringsSep ".";
     in lib.optionalString (config.nvimx.nixd.inFlake) ''
       local lsp = vim.lsp
@@ -86,7 +85,10 @@
               expr = flakeExpr .. ".inputs.\"${config.nvimx.nixd.nixpkgsName}\".legacyPackages.\"${system}\"",
             },'' }
             options = {
-              ${lib.optionalString (config.nvimx.nixd.nixosConfKey != "") ''
+              ${
+              # would like to disable nixos options when using home manager but that is not possible; nixd will fallback to <nixpkgs>
+              # See: https://github.com/nix-community/nixd/issues/807
+              lib.optionalString (config.nvimx.nixd.nixosConfKey != "") ''
               nixos = {
                 expr = flakeExpr .. ".nixosConfigurations.\"${config.nvimx.nixd.nixosConfKey}\".options",
               },'' }
