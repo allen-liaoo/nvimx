@@ -29,6 +29,7 @@
     mouse = "a"; # mouse support: all modes
     mousemodel = "extend"; # mouse selection
     number = true; # lineno
+    cursorline = true;
     termguicolors = true;
     # indent
     tabstop = 2;

@@ -15,8 +15,6 @@
       settings.options.always_show_bufferline = false;
     };
 
-    cursorline.enable = true;
-
     gitsigns.enable = true;
 
     indent-blankline = {
