@@ -4,6 +4,7 @@
   imports = [
     ./blink-cmp.nix
     ./flash.nix
+    ./git-conflict.nix
     ./lualine.nix
     ./telescope.nix
     ./toggleterm.nix
