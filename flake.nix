@@ -15,24 +15,26 @@
     ];
     nixvimModules = rec {
       default = { 
-        imports = [ ./modules ];
+        imports = [ ./nixvim ];
       };
       base = default;
       nix = {
-        imports = [ ./modules ./modules/langs/nix.nix ];
+        imports = [ ./nixvim ./nixvim/langs/nix.nix ];
       };
       typst = {
-        imports = [ ./modules ./modules/langs/typst.nix ];
+        imports = [ ./nixvim ./nixvim/langs/typst.nix ];
       };
     };
     forEachSystem = nixpkgs.lib.genAttrs systems;
     pkgsOf = system: nixpkgs.legacyPackages.${system};
-    moduleArgs = system: (let 
-      pkgs = pkgsOf system;
-    in {
-      inherit pkgs nixvim system;
-      inherit (pkgs) stdenv;
-    });
+    moduleArgs = system: (
+      let 
+        pkgs = pkgsOf system;
+      in {
+        inherit pkgs nixvim system;
+        inherit (pkgs) stdenv;
+      }
+    );
   in {
     inherit nixvimModules;
     makeNixvimWithModule = system: m:
