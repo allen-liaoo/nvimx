@@ -19,7 +19,7 @@
         description = "Name of nixosConfigurations key in the flake, used for looking up NixOS options.";
         default = "";
       };
-      hmConfKey  = lib.mkOption {
+      hmConfKey = lib.mkOption {
         type = lib.types.str;
         description = "Name of homeConfigurations key in the flake, used for looking up Home Manager options. Only set this if using HM standalone.";
         default = "";
@@ -34,9 +34,10 @@
       inFlake = lib.mkOption {
         type = lib.types.bool;
         default = with config.nvimx.nixd; 
-          [ nixpkgsName nixosConfKey hmConfKey ]
-          |> builtins.filter (s: s != "") 
-          |> (l: builtins.length l != 0);
+          builtins.any (s: s != "") [
+            nixpkgsName nixosConfKey hmConfKey
+          ] || flakeInputs != { };
+        readOnly = true;
       };
     };
   };
