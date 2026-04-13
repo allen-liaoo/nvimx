@@ -22,7 +22,7 @@
   };
 
   globals = {
-    mapleader = ",";
+    mapleader = "\\"; # enter
   };
 
   opts = {

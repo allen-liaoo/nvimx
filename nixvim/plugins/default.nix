@@ -6,17 +6,12 @@
     ./flash.nix
     ./git-conflict.nix
     ./lualine.nix
+    ./tabby.nix
     ./telescope.nix
-    ./toggleterm.nix
     ./yazi.nix
   ];
 
   plugins = {
-    bufferline = {
-      enable = true;
-      settings.options.always_show_bufferline = false;
-    };
-
     gitsigns.enable = true;
 
     indent-blankline = {

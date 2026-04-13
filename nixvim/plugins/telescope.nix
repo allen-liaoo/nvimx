@@ -1,4 +1,6 @@
-_:
+{
+  ...
+}:
 
 {
   plugins.telescope = {
@@ -8,8 +10,14 @@ _:
     };
 
     settings = {
-      defaults.mappings.i = {
-        "<esc>" = "close"; # esc to close telescope
+      defaults.mappings = {
+        i = {
+          "<esc>" = "close"; # esc to close telescope
+        };
+      };
+      pickers.buffers = {
+        ignore_current_buffer = true;
+        sort_mru = true; # most recently used first
       };
     };
 
@@ -17,6 +25,11 @@ _:
       "<leader>fw" = {
         action = "grep_string";
         options.desc = "Telescope: Find in file";
+      };
+
+      "<leader><leader>" = {
+        action = "buffers";
+        options.desc = "Telescope: Find buffers";
       };
 
       "<leader>fc" = {

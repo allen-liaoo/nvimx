@@ -5,9 +5,13 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tabby = {
+      url = "github:nanozuki/tabby.nvim";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, nixvim }: let
+  outputs = { nixpkgs, nixvim, ... }@inputs: let
     systems = [
       "x86_64-linux"
       "aarch64-linux"
@@ -31,7 +35,7 @@
       let 
         pkgs = pkgsOf system;
       in {
-        inherit pkgs nixvim system;
+        inherit pkgs nixvim system inputs;
         inherit (pkgs) stdenv;
       }
     );

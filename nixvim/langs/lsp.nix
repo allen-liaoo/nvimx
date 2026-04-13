@@ -18,32 +18,6 @@ _:
       };
     };
 
-    keymaps = [
-      {
-        key = "gd";
-        lspBufAction = "definition";
-        options.desc = "LSP: Go to definition";
-      }
-      {
-        key = "gD";
-        lspBufAction = "references";
-        options.desc = "LSP: Go to references";
-      }
-      {
-        key = "gt";
-        lspBufAction = "type_definition";
-        options.desc = "LSP: Go to type definition";
-      }
-      {
-        key = "gi";
-        lspBufAction = "implementation";
-        options.desc = "LSP: Go to implementation";
-      }
-      {
-        key = "K";
-        lspBufAction = "hover";
-      }
-    ];
   };
   plugins.lspconfig.enable = true;
 }
