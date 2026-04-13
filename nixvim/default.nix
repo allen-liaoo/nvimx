@@ -10,6 +10,7 @@
 {
   imports = [
     ./keys.nix
+    ./langs
     ./plugins
   ];
   enableMan = false;

@@ -1,10 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:nix-community/nixvim"; # Dont follow nixpkgs; see: https://nix-community.github.io/nixvim/user-guide/faq.html#how-do-i-solve-name-cannot-be-found-in-pkgs
     tabby = {
       url = "github:nanozuki/tabby.nvim";
       flake = false;
@@ -17,18 +14,7 @@
       "aarch64-linux"
       "aarch64-darwin"
     ];
-    nixvimModules = rec {
-      default = { 
-        imports = [ ./nixvim ];
-      };
-      base = default;
-      nix = {
-        imports = [ ./nixvim ./nixvim/langs/nix.nix ];
-      };
-      typst = {
-        imports = [ ./nixvim ./nixvim/langs/typst.nix ];
-      };
-    };
+    nixvimModules = import ./modules.nix;
     forEachSystem = nixpkgs.lib.genAttrs systems;
     pkgsOf = system: nixpkgs.legacyPackages.${system};
     moduleArgs = system: (
@@ -67,8 +53,8 @@
     in {
       default = pkgs.mkShell (let
         nixvimModule = {
-          imports = [ nixvimModules.nix ];
-          nvimx.nixd = { # enable lsp to lookup of nixvim options
+          nvimx.nix.enable = true;
+          nvimx.nix.nixd = { # enable lsp to lookup of nixvim options
             nixpkgsName = "nixpkgs";
             flakeInputs.nixvim = "nixvimConfigurations.${system}.default";
           };

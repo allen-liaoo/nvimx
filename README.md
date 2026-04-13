@@ -33,11 +33,11 @@ Nvimx flake outputs `nixvimModules.${variant}` and `makeNixvimWithModule (system
       pkgs = nixpkgs.legacyPackages.${system};
     in ${system}.default = pkgs.mkShell (let
       nixvimModule = {
-        imports = [
-          # setup the variants you want to include
-          nixvim.nixvimModules.default
-        ];
-        # custom nixvim or nvimx options here
+        # enable the variants you want to use
+        nvimx.typst.enable = true;
+
+        # or add custom nixvim or nvimx options here
+        plugins.xyz.enable = true;
       };
       nixvimPkg = nvimx.makeNixvimWithModule system nixvimModule; # package it!
     in {
