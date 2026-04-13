@@ -47,6 +47,11 @@
       nixGrammars = true;
       nixvimInjections = true;
     };
+
+    opts = {
+      foldlevel = 99;
+      foldlevelstart = 90;
+    };
   
     plugins.treesitter-context = {
       enable = true;

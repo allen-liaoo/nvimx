@@ -16,7 +16,13 @@
 
     indent-blankline = {
       enable = true;
-      settings.indent.char = "¦";
+      settings = {
+        indent.char = "¦";
+        scope = {
+          show_start = false;
+          show_end = false;
+        };
+      };
     };
 
     nvim-surround.enable = true;

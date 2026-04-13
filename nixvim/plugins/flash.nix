@@ -14,11 +14,5 @@ _:
       mode = [ "n" "x" "o" ];
       options.desc = "Flash jump";
     }
-    { # toggle jump labels during search
-      action = "<cmd>lua (function() require('flash').toggle() end)()<CR>";
-      key = "<C-s>";
-      mode = [ "c" ];
-      options.desc = "Toggle Flash search";
-    }
   ];
 }

@@ -31,22 +31,14 @@
       let 
         pkgs = pkgsOf system;
       in nixvim.legacyPackages.${system}.makeNixvimWithModule {
-        module = m;
+        module = m // { imports = (m.imports or []) ++ [ ./nixvim ]; };
         extraSpecialArgs = moduleArgs system;
         inherit pkgs;
       };
 
-    packages = forEachSystem (system: 
-      let 
+    packages = forEachSystem (system: let 
         pkgs = pkgsOf system;
-      in pkgs.lib.mapAttrs (_: v: 
-        nixvim.legacyPackages.${system}.makeNixvimWithModule {
-          module = v;
-          extraSpecialArgs = moduleArgs system;
-          inherit pkgs;
-        }
-      ) nixvimModules 
-    );
+      in pkgs.lib.mapAttrs (_: makeNixvimWithModule system) nixvimModules);
 
     devShells = forEachSystem (system: let
       pkgs = pkgsOf system;
