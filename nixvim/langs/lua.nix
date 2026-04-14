@@ -6,7 +6,7 @@
 
 {
   options.nvimx.lua.enable = lib.mkEnableOption "lua";
-  config = {
+  config = lib.mkIf (config.nvimx.lua.enable) {
     nvimx.lsp.enable = true;
     lsp.servers.lua_ls.enable = true;
 

@@ -56,5 +56,7 @@
     plugins.treesitter-context = {
       enable = true;
     };
+    
+    dependencies.tree-sitter.enable = true;
   };
 }
