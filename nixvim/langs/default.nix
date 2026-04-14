@@ -11,9 +11,10 @@
   };
 
   imports = [
+    ./configs.nix
     ./lua.nix
     ./nix.nix
-    ./shell.nix
+    ./shells.nix
     ./typst.nix
   ];
 

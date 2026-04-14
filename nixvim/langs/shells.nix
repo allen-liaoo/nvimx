@@ -5,8 +5,8 @@
 }:
 
 {
-  options.nvimx.shell.enable = lib.mkEnableOption "shell";
-  config = lib.mkIf (config.nvimx.shell.enable) {
+  options.nvimx.shells.enable = lib.mkEnableOption "shell";
+  config = lib.mkIf (config.nvimx.shells.enable) {
     nvimx.lsp.enable = true;
     lsp.servers.bashls.enable = true;
 

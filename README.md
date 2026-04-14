@@ -1,21 +1,25 @@
 # `n`v`i`m`x`
 
-Project based, modular Neovim configuration via NixVim.
+Project-based, modular Neovim configuration via NixVim.
 
-Nvimx exports these module/package variants:
-- `default`/`base` - Base Neovim instance, contains most plugins, no specific language support. All other variants automatically includes this base.
-- Languages:
-  - `nix` - [nixd](https://github.com/nix-community/nixd/)
-  - `typst` - [Tinymist](https://github.com/Myriad-Dreamin/tinymist)
+Nvimx provides many presets based on different language (lsp, treesitter) support and different uses, allowing you to choose what is installed on a neovim instance per project. Works well with [direnv](https://direnv.net/).
+
+Nvimx exports these module/package presets:
+- `default`/`base` - Base Neovim instance, contains all plugins, no language support. All other presets automatically includes this base.
+- Languages (ts = treesitter):
+  - `configs` - ts for `ini`, `json`, `kdl`, `yaml`, `toml`
+  - `nix` - ts & lsp ([nixd](https://github.com/nix-community/nixd/))
+  - `shells` - ts and lsp for `bash`, `fish`, `zsh`
+  - `typst` - ts and lsp ([tinymist](https://github.com/Myriad-Dreamin/tinymist))
 
 ## Usage
-1. Use a packaged variant (i.e. via `nix shell`):
+1. Use a packaged presets (i.e. via `nix shell`):
 ```bash
-nix shell github:allen-liaoo/nvimx#{variant}
+nix shell github:allen-liaoo/nvimx#{preset}
 ```
 
 2. Construct a module in a flake (i.e. in `devShells`).
-Nvimx flake outputs `nixvimModules.${variant}` and `makeNixvimWithModule (system: nixvimModule: ...)` to be used in this case. 
+Nvimx flake outputs `makeNixvimWithModule (system: nixvimModule: ...)` to be used in this case. Presents have options under `nvimx.${preset}`, and need to be opted in with `nvimx.${preset}.enable = true`.
 ```nix
 {
   inputs = {
@@ -33,7 +37,7 @@ Nvimx flake outputs `nixvimModules.${variant}` and `makeNixvimWithModule (system
       pkgs = nixpkgs.legacyPackages.${system};
     in ${system}.default = pkgs.mkShell (let
       nixvimModule = {
-        # enable the variants you want to use
+        # enable the presets you want to use
         nvimx.typst.enable = true;
 
         # or add custom nixvim or nvimx options here
