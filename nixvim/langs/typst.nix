@@ -17,7 +17,7 @@
         filetypes = [ "typst" ];
         settings = {
           outputPath = "$dir/$name";
-          exportPdf = "auto";
+          exportPdf = "onType";
         };
       };
     };
