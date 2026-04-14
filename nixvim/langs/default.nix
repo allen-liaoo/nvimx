@@ -31,6 +31,7 @@
           };
           root_markers = [
             ".git"
+            ".envrc"
           ];
         };
       };
