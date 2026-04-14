@@ -16,8 +16,8 @@
         cmd = [ "tinymist" ];
         filetypes = [ "typst" ];
         settings = {
-          outputPath = "$dir/$name";
-          exportPdf = "onType";
+          outputPath = lib.mkDefault "$root/$dir/$name";
+          exportPdf = lib.mkDefault "onType";
         };
       };
     };
