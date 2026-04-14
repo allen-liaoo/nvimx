@@ -12,6 +12,19 @@
     lsp.servers.tinymist = {
       enable = true;
       activate = true;
+      config = {
+        cmd = [ "tinymist" ];
+        filetypes = [ "typst" ];
+        settings = {
+          outputPath = "$dir/$name";
+          exportPdf = "auto";
+        };
+      };
+    };
+
+    dependencies.tinymist = {
+      enable = true;
+      packageFallback = true; # let local version override this
     };
 
     nvimx.treesitter.enable = true;
@@ -19,10 +32,5 @@
     plugins.treesitter.grammarPackages = with config.plugins.treesitter.package.builtGrammars; [
       typst
     ];
-  
-    dependencies.typst = {
-      enable = true;
-      packageFallback = true; # let local version override this
-    };
   };
 }
