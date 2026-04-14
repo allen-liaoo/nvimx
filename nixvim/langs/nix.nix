@@ -49,8 +49,8 @@ config = lib.mkIf (config.nvimx.nix.enable) {
         settings.nixd = let
           q = "\\\""; # nix's quote ("), escaped in lua (\"), escaped in nix
           flakeExpr = "(builtins.getFlake ${q}\' .. find_flake_dir() .. \'${q})"; # see lsp.luaConfig below
-          # path to options may contain special characters, so need escaping (in nix)
-          escapePath = path: path
+          # user supplied values may contain special characters, need escaping to use as attr path (in nix)
+          escape = path: path
             |> lib.splitString "."
             |> map (s: q + s + q)
             |> builtins.concatStringsSep ".";
@@ -67,7 +67,7 @@ config = lib.mkIf (config.nvimx.nix.enable) {
           nixpkgs.expr = if nixpkgsName != "" 
             then {
               # need to use __raw because we want flake_dir in flakeExpr to be interpolated 
-              __raw =  "\'${flakeExpr}.inputs.${nixpkgsName}.legacyPackages.${system}\'";
+              __raw =  "\'${flakeExpr}.inputs.${escape nixpkgsName}.legacyPackages.${system}\'";
             }
             else "import <nixpkgs> { }";
 
@@ -78,11 +78,11 @@ config = lib.mkIf (config.nvimx.nix.enable) {
             })
             ( # input = full path (flake.full_path) to module options
               lib.optionalAttrs (nixosConfKey != "") {
-                "nixos" = "${flakeExpr}.nixosConfigurations.${escapePath nixosConfKey}.options";
+                "nixos" = "${flakeExpr}.nixosConfigurations.${escape nixosConfKey}.options";
               } // lib.optionalAttrs (hmConfKey != "") {
-                "home-manager]" = "${flakeExpr}.homeConfigurations.${escapePath hmConfKey}.options";
+                "home-manager]" = "${flakeExpr}.homeConfigurations.${escape hmConfKey}.options";
               } // lib.mapAttrs (input: path: 
-                "${flakeExpr}.inputs.${escapePath input}.${escapePath path}.options"
+                "${flakeExpr}.inputs.${escape input}.${escape path}.options"
               ) flakeInputs
             );
         };
