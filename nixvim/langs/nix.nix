@@ -38,15 +38,7 @@
     };
   };
 
-config = let
-  q = "\\\""; # nix's quote ("), escaped in lua (\"), escaped in nix
-  flakeExpr = "(builtins.getFlake ${q}\' .. find_flake_dir() .. \'${q})"; # see lsp.luaConfig below
-  # exprOfInput produces a nix expr in lua that gets the necessary path of an input
-  # for nixpkgs, this is the pkgs path
-  # for flake inputs (not including nixos or home-manager), this is the path to module options
-    # https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md
-  exprOfInput = (input: path: "\'${flakeExpr}.inputs.${path}\'");
-in lib.mkIf (config.nvimx.nix.enable) {
+config = lib.mkIf (config.nvimx.nix.enable) {
     nvimx.lsp.enable = true;
 
     lsp.servers.nixd = {
@@ -54,9 +46,24 @@ in lib.mkIf (config.nvimx.nix.enable) {
       activate = true;
       config = {
         cmd = [ "nixd" ]; # necessary
-        settings.nixd = with config.nvimx.nix.nixd; {
+        settings.nixd = let
+          q = "\\\""; # nix's quote ("), escaped in lua (\"), escaped in nix
+          flakeExpr = "(builtins.getFlake ${q}\' .. find_flake_dir() .. \'${q})"; # see lsp.luaConfig below
+          # path to options may contain special characters, so need escaping (in nix)
+          escapePath = path: path
+            |> lib.splitString "."
+            |> map (s: q + s + q)
+            |> builtins.concatStringsSep ".";
+        in with config.nvimx.nix.nixd; {
           diagnostic.suppress = [ "sema-extra-with" ];
 
+        # Tell nixd where to lookup module options and pkgs
+        # by providing nix exprs (in lua) that gets the options/pkgs from the flake
+        # for nixpkgs, this is the pkgs path
+        # for nixos/hm, this is flake.nixosConfigurations/homeConfigurations.<name>.options
+        # for arbitrary flake inputs, this is the path to module options
+        # https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md
+        
           nixpkgs.expr = if nixpkgsName != "" 
             then {
               # need to use __raw because we want flake_dir in flakeExpr to be interpolated 
@@ -71,13 +78,12 @@ in lib.mkIf (config.nvimx.nix.enable) {
             })
             ( # input = full path (flake.full_path) to module options
               lib.optionalAttrs (nixosConfKey != "") {
-                "nixos" = "${flakeExpr}.nixosConfigurations.${nixosConfKey}.options";
+                "nixos" = "${flakeExpr}.nixosConfigurations.${escapePath nixosConfKey}.options";
               } // lib.optionalAttrs (hmConfKey != "") {
-                "[\"home-manager\"]" = "${flakeExpr}.homeConfigurations.${hmConfKey}.options";
-              } // lib.mapAttrs' (input: path: {
-                name = "[\"${input}\"]";
-                value = "${flakeExpr}.inputs.${input}.${path}.options";
-              }) flakeInputs
+                "home-manager]" = "${flakeExpr}.homeConfigurations.${escapePath hmConfKey}.options";
+              } // lib.mapAttrs (input: path: 
+                "${flakeExpr}.inputs.${escapePath input}.${escapePath path}.options"
+              ) flakeInputs
             );
         };
       };
