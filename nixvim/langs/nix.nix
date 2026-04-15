@@ -45,7 +45,6 @@ config = lib.mkIf (config.nvimx.nix.enable) {
       enable = true;
       activate = true;
       config = {
-        cmd = [ "nixd" ]; # necessary
         settings.nixd = let
           q = "\\\""; # nix's quote ("), escaped in lua (\"), escaped in nix
           flakeExpr = "(builtins.getFlake ${q}\' .. find_flake_dir() .. \'${q})"; # see lsp.luaConfig below
