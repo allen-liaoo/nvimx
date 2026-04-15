@@ -13,22 +13,14 @@
       enable = true;
       activate = true;
       config = {
-        cmd = [ "tinymist" ];
-        filetypes = [ "typst" ];
         settings = {
           outputPath = lib.mkDefault "$root/$dir/$name";
           exportPdf = lib.mkDefault "onType";
         };
       };
     };
-
-    dependencies.tinymist = {
-      enable = true;
-      packageFallback = true; # let local version override this
-    };
-
+    
     nvimx.treesitter.enable = true;
-
     plugins.treesitter.grammarPackages = with config.plugins.treesitter.package.builtGrammars; [
       typst
     ];
