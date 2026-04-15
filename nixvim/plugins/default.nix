@@ -27,6 +27,8 @@
 
     nvim-surround.enable = true;
 
+    showkeys.enable = true;
+
     web-devicons = {
       enable = true;
       settings = {
