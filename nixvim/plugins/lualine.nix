@@ -12,6 +12,20 @@
       };
       sections = {
         lualine_a = [
+          "mode" 
+        ];
+        lualine_b = [
+          {
+            __unkeyed-1 = "b:gitsigns_head";
+            icon = { __unkeyed-1 = ""; align = "right"; };
+          }
+          # use gitsigns branch and diff
+          {
+            __unkeyed-1 = "diff";
+            source.__raw = "diff_source";
+          }
+        ];
+        lualine_c = [
           {
             __unkeyed-1 = "filename"; 
             symbols = {
@@ -20,23 +34,12 @@
               unamed = "[No Name]";
               new = "[New]";
             };
+            path = 1;
           }
         ];
-        lualine_b = [ "filetype" ];
-        lualine_c = [ "lsp_status" "diagnostics" ];
-        lualine_x = [ "progress" ];
-        lualine_y = [ 
-          # use gitsigns branch and diff
-          {
-            __unkeyed-1 = "diff";
-            source.__raw = "diff_source";
-          }
-          {
-            __unkeyed-1 = "b:gitsigns_head";
-            icon = { __unkeyed-1 = ""; align = "right"; };
-          }
-        ];
-        lualine_z = [ "mode" ];
+        lualine_x = [ "progress" "filetype" ];
+        lualine_y = [ "diagnostics" ];
+        lualine_z = [ "lsp_status" ];
       };
     };
 
