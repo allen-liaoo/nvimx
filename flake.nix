@@ -6,6 +6,10 @@
       url = "github:nanozuki/tabby.nvim";
       flake = false;
     };
+    winresize = {
+      url = "github:pogyomo/winresize.nvim";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, nixvim, ... }@inputs: let

@@ -77,7 +77,8 @@
       "inputs": {
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
-        "tabby": "tabby"
+        "tabby": "tabby",
+        "winresize": "winresize"
       }
     },
     "systems": {
@@ -108,6 +109,22 @@
       "original": {
         "owner": "nanozuki",
         "repo": "tabby.nvim",
+        "type": "github"
+      }
+    },
+    "winresize": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736192087,
+        "narHash": "sha256-g+2JAzYiTOA2MuJ3eSdnTWObx96UAheFsslVvQgitFI=",
+        "owner": "pogyomo",
+        "repo": "winresize.nvim",
+        "rev": "df7ac44154565b0bb91a8894ffe57c5a93689f10",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pogyomo",
+        "repo": "winresize.nvim",
         "type": "github"
       }
     }

@@ -8,6 +8,7 @@
     ./lualine.nix
     ./tabby.nix
     ./telescope.nix
+    ./winresize.nix
     ./yazi.nix
   ];
 
