@@ -10,7 +10,8 @@ Nvimx exports these module/package presets:
   - `configs` - ts for `ini`, `json`, `kdl`, `yaml`, `toml`
   - `latex` - ts & lsp ([texlab](https://github.com/latex-lsp/texlab))
   - `nix` - ts & lsp ([nixd](https://github.com/nix-community/nixd/))
-  - `shells` - ts and lsp for `bash`, `fish`, `zsh`
+  - `rust` - ts & lsp ([rust-analyzer](https://github.com/rust-lang/rust-analyzer))
+  - `shells` - ts and lsp for `bash`, `fish`, `zsh` ([bashls](https://github.com/bash-lsp/bash-language-server))
   - `typst` - ts and lsp ([tinymist](https://github.com/Myriad-Dreamin/tinymist))
 
 Additionally, you can set `nvimx.treesitter.enableAllGrammars = true` to get ts for all languages without individually enabling variants.
