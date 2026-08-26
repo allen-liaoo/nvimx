@@ -88,25 +88,27 @@
       local only_tab = vim.fn.tabpagenr('$') == 1
       local is_terminal = vim.bo.buftype == "terminal"
     
+      -- some plugins (e.g. aerial) delete their own scratch buffer when
+      -- the window closes, so bufnr may already be gone by the time we get here
+      local function delete_buf_if_valid()
+        if should_delete and vim.api.nvim_buf_is_valid(bufnr) then
+          vim.api.nvim_buf_delete(bufnr, { force = is_terminal })
+        end
+      end
+
       if only_window_in_tab then
         if only_tab then
           -- Can't close last tab; open an empty buffer in its place
-          if should_delete then
-            vim.cmd('enew')
-            vim.api.nvim_buf_delete(bufnr, { force = is_terminal })
-          end
+          vim.cmd('enew')
+          delete_buf_if_valid()
         else
           -- tabclose implicitly closes the window; delete buf after
           vim.cmd('tabclose')
-          if should_delete then
-            vim.api.nvim_buf_delete(bufnr, { force = is_terminal })
-          end
+          delete_buf_if_valid()
         end
       else
         vim.api.nvim_win_close(0, false)
-        if should_delete then
-          vim.api.nvim_buf_delete(bufnr, { force = is_terminal })
-        end
+        delete_buf_if_valid()
       end
     end
 
