@@ -35,6 +35,7 @@
     number = true; # lineno
     cursorline = true;
     termguicolors = true;
+    relativenumber = true;
 
     # indent
     tabstop = 2;
