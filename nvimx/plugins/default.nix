@@ -3,12 +3,12 @@
 {
   imports = [
     ./blink-cmp.nix
-    ./codecompanion.nix
     ./flash.nix
     ./git-conflict.nix
     ./grug-far.nix
     ./lualine.nix
     ./outline.nix
+    ./sidekick.nix
     ./telescope.nix
     ./winresize.nix
     ./yazi.nix
