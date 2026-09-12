@@ -39,8 +39,6 @@
   };
 
 config = lib.mkIf (config.nvimx.preset.nix.enable) {
-    nvimx.lsp.enable = true;
-
     lsp.servers.nixd = {
       enable = true;
       activate = true;
