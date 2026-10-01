@@ -61,14 +61,16 @@ For more examples, see the [projs/](/projs) directory.
   | --- | --- | :-: | --- |
   | `c` | C | ✅ | [ccls](https://github.com/MaskRay/ccls) |
   | `configs` | ini, json, kdl, toml, yaml | ✅ | — |
-  | `egglog` | egglog | ✅ | — |
+  | `egglog` | egglog | ✅* | — |
   | `java` | Java | ✅ | [jdtls](https://github.com/eclipse-jdtls/eclipse.jdt.ls) |
   | `latex` | LaTeX | ✅ | [texlab](https://github.com/latex-lsp/texlab) |
-  | `llvm-ir` | LLVM IR | ✅ | [llvm-ir-lsp](https://github.com/indoorvivants/llvm-ir-lsp) |
+  | `llvm-ir` | LLVM IR | ✅ | [llvm-ir-lsp](https://github.com/indoorvivants/llvm-ir-lsp)* |
   | `nix` | Nix | ✅ | [nixd](https://github.com/nix-community/nixd/) |
   | `rust` | Rust | ✅ | [rust-analyzer](https://github.com/rust-lang/rust-analyzer) |
   | `shells` | bash, fish, zsh | ✅ | [bashls](https://github.com/bash-lsp/bash-language-server) (bash only) |
   | `typst` | Typst | ✅ | [tinymist](https://github.com/Myriad-Dreamin/tinymist) |
+
+*: Manually packaged here (Not in `neovim-treesitter` or `nixvim` lsps)
 
 ## Credits
 Inspired by [ar-at-localhost/np](https://github.com/ar-at-localhost/np).
