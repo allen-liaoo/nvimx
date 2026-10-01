@@ -12,7 +12,7 @@
       packages = forAllSystems (system: {
         default = nvimx.makeNvimxWithModule system {
           nvimx.preset.rust.enable = true;
-          nvimx.preset.llvm.enable = true;
+          nvimx.preset.llvm-ir.enable = true;
           nvimx.preset.c.enable = true;
           nvimx.preset.egglog.enable = true;
         };
