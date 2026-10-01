@@ -4,16 +4,9 @@ Project-based, modular Neovim configuration via NixVim.
 
 Nvimx provides many presets based on different language (lsp, treesitter) support and different uses, allowing you to choose what is installed on a neovim instance per project. Works well with [direnv](https://direnv.net/).
 
-Nvimx exports these module/package presets:
+Nvimx exports different module/package presets:
 - `default`/`base` - Base Neovim instance, contains all plugins, no language support. All other presets automatically includes this base.
-- Languages (ts = treesitter):
-  - `configs` - ts for `ini`, `json`, `kdl`, `yaml`, `toml`
-  - `egglog` - ts (from [egglog-language-server](https://github.com/egraphs-good/egglog-language-server))
-  - `latex` - ts & lsp ([texlab](https://github.com/latex-lsp/texlab))
-  - `nix` - ts & lsp ([nixd](https://github.com/nix-community/nixd/))
-  - `rust` - ts & lsp ([rust-analyzer](https://github.com/rust-lang/rust-analyzer))
-  - `shells` - ts and lsp for `bash`, `fish`, `zsh` ([bashls](https://github.com/bash-lsp/bash-language-server))
-  - `typst` - ts and lsp ([tinymist](https://github.com/Myriad-Dreamin/tinymist))
+- Language-based - See the end of this readme.
 
 Additionally, you can set `nvimx.treesitter.enableAllGrammars = true` to get ts for all languages without individually enabling variants.
 
@@ -61,6 +54,22 @@ Nvimx flake outputs `makeNvimxWithModule (system: nvimxModule: ...)` to be used 
   };
 }
 ```
+For more examples, see the [projs/](/projs) directory.
+
+## Presets
+  | Preset | Languages | TreeSitter | LSP |
+  | --- | --- | :-: | --- |
+  | `c` | C | ✅ | [ccls](https://github.com/MaskRay/ccls) |
+  | `configs` | ini, json, kdl, toml, yaml | ✅ | — |
+  | `egglog` | egglog | ✅ | — |
+  | `java` | Java | ✅ | [jdtls](https://github.com/eclipse-jdtls/eclipse.jdt.ls) |
+  | `latex` | LaTeX | ✅ | [texlab](https://github.com/latex-lsp/texlab) |
+  | `llvm-ir` | LLVM IR | ✅ | [llvm-ir-lsp](https://github.com/indoorvivants/llvm-ir-lsp) |
+  | `nix` | Nix | ✅ | [nixd](https://github.com/nix-community/nixd/) |
+  | `rust` | Rust | ✅ | [rust-analyzer](https://github.com/rust-lang/rust-analyzer) |
+  | `shells` | bash, fish, zsh | ✅ | [bashls](https://github.com/bash-lsp/bash-language-server) (bash only) |
+  | `typst` | Typst | ✅ | [tinymist](https://github.com/Myriad-Dreamin/tinymist) |
 
 ## Credits
 Inspired by [ar-at-localhost/np](https://github.com/ar-at-localhost/np).
+

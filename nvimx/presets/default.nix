@@ -2,10 +2,12 @@ _:
 
 {
   imports = [
+    ./c.nix
     ./configs.nix
     ./egglog.nix
     ./java.nix
     ./latex.nix
+    ./llvm-ir.nix
     ./nix.nix
     ./rust.nix
     ./shells.nix
