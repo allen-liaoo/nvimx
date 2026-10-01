@@ -8,7 +8,7 @@
     ./grug-far.nix
     ./lualine.nix
     ./outline.nix
-    ./sidekick.nix
+    #./sidekick.nix
     ./telescope.nix
     ./winresize.nix
     ./yazi.nix
