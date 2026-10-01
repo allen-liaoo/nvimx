@@ -7,6 +7,7 @@ in
   default = base;
   base = base;
   configs = base // { nvimx.preset.configs.enable = true; };
+  egglog = base // { nvimx.preset.egglog.enable = true; };
   java = base // { nvimx.preset.java.enable = true; };
   latex = base // { nvimx.preset.latex.enable = true; };
   nix = base // { nvimx.preset.nix.enable = true; };

@@ -3,6 +3,7 @@ _:
 {
   imports = [
     ./configs.nix
+    ./egglog.nix
     ./java.nix
     ./latex.nix
     ./nix.nix
