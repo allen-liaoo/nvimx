@@ -56,22 +56,7 @@
           };
         };
         nixvimPkg = self.makeNvimxWithModule system nixvimModule;
-        nvimx-update = pkgs.writeShellApplication {
-          name = "nvimx-update";
-          runtimeInputs = [ pkgs.git pkgs.nix pkgs.coreutils ];
-          text = ''
-            shopt -s nullglob
-            cd "$(git rev-parse --show-toplevel)"
-
-            nix flake update                                  # bump the root's inputs
-
-            for f in projs/*/flake.nix; do
-              dir=$(dirname "$f")
-              echo "re-locking $dir"
-              nix flake update nvimx --flake "./$dir"         # re-sync nvimx + its transitive pins
-            done
-          '';
-        };
+        nvimx-update = pkgs.callPackage ./pkgs/nvimx-update.nix { };
       in {
         packages = [ nixvimPkg nvimx-update ];
       });
