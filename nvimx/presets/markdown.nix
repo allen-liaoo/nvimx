@@ -20,9 +20,6 @@
         enabled = true;
         preset = "none";
         render_modes = true;
-        max_file_size = 10.0;
-        debounce = 100;
-        signs.enabled = false;
       };
     };
 
