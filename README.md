@@ -65,12 +65,14 @@ For more examples, see the [projs/](/projs) directory.
   | `java` | Java | ✅ | [jdtls](https://github.com/eclipse-jdtls/eclipse.jdt.ls) | [java-debug](https://github.com/microsoft/java-debug) via jdtls |
   | `latex` | LaTeX | ✅ | [texlab](https://github.com/latex-lsp/texlab) | — | 
   | `llvm-ir` | LLVM IR | ✅ | [llvm-ir-lsp](https://github.com/indoorvivants/llvm-ir-lsp)* | — |
-  | `nix` | Nix | ✅ | [nixd](https://github.com/nix-community/nixd/)| — |
+  | `markdown`** | Markdown | ✅ | [marksman](https://github.com/artempyanykh/marksman) | — | 
+  | `nix` | Nix | ✅ | [nixd](https://github.com/nix-community/nixd/) | — |
   | `rust` | Rust | ✅ | [rust-analyzer](https://github.com/rust-lang/rust-analyzer) | [dap-lldb](https://github.com/julianolf/nvim-dap-lldb/) |
   | `shells` | bash, fish, zsh | ✅ | [bashls](https://github.com/bash-lsp/bash-language-server) (bash only) | — |
   | `typst` | Typst | ✅ | [tinymist](https://github.com/Myriad-Dreamin/tinymist) | — | 
 
-*: Manually packaged here (Not in `neovim-treesitter` or `nixvim` lsps)
+*: Manually packaged here (Not in `neovim-treesitter` or `nixvim` lsps)  
+**: Enabled by default
 
 ## Credits
 Inspired by [ar-at-localhost/np](https://github.com/ar-at-localhost/np).
