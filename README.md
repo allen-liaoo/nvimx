@@ -57,18 +57,18 @@ Nvimx flake outputs `makeNvimxWithModule (system: nvimxModule: ...)` to be used 
 For more examples, see the [projs/](/projs) directory.
 
 ## Presets
-  | Preset | Languages | TreeSitter | LSP |
-  | --- | --- | :-: | --- |
-  | `c` | C | ✅ | [ccls](https://github.com/MaskRay/ccls) |
-  | `configs` | ini, json, kdl, toml, yaml | ✅ | — |
-  | `egglog` | egglog | ✅* | — |
-  | `java` | Java | ✅ | [jdtls](https://github.com/eclipse-jdtls/eclipse.jdt.ls) |
-  | `latex` | LaTeX | ✅ | [texlab](https://github.com/latex-lsp/texlab) |
-  | `llvm-ir` | LLVM IR | ✅ | [llvm-ir-lsp](https://github.com/indoorvivants/llvm-ir-lsp)* |
-  | `nix` | Nix | ✅ | [nixd](https://github.com/nix-community/nixd/) |
-  | `rust` | Rust | ✅ | [rust-analyzer](https://github.com/rust-lang/rust-analyzer) |
-  | `shells` | bash, fish, zsh | ✅ | [bashls](https://github.com/bash-lsp/bash-language-server) (bash only) |
-  | `typst` | Typst | ✅ | [tinymist](https://github.com/Myriad-Dreamin/tinymist) |
+  | Preset | Languages | TreeSitter | LSP | DAP |
+  | --- | --- | :-: | --- | --- |
+  | `c` | C | ✅ | [ccls](https://github.com/MaskRay/ccls) | [dap-lldb](https://github.com/julianolf/nvim-dap-lldb/) |
+  | `configs` | ini, json, kdl, toml, yaml | ✅ | — | — | 
+  | `egglog` | egglog | ✅* | — | — |
+  | `java` | Java | ✅ | [jdtls](https://github.com/eclipse-jdtls/eclipse.jdt.ls) | [java-debug](https://github.com/microsoft/java-debug) via jdtls |
+  | `latex` | LaTeX | ✅ | [texlab](https://github.com/latex-lsp/texlab) | — | 
+  | `llvm-ir` | LLVM IR | ✅ | [llvm-ir-lsp](https://github.com/indoorvivants/llvm-ir-lsp)* | — |
+  | `nix` | Nix | ✅ | [nixd](https://github.com/nix-community/nixd/)| — |
+  | `rust` | Rust | ✅ | [rust-analyzer](https://github.com/rust-lang/rust-analyzer) | [dap-lldb](https://github.com/julianolf/nvim-dap-lldb/) |
+  | `shells` | bash, fish, zsh | ✅ | [bashls](https://github.com/bash-lsp/bash-language-server) (bash only) | — |
+  | `typst` | Typst | ✅ | [tinymist](https://github.com/Myriad-Dreamin/tinymist) | — | 
 
 *: Manually packaged here (Not in `neovim-treesitter` or `nixvim` lsps)
 
