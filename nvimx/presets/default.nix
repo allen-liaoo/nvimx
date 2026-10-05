@@ -16,5 +16,6 @@ _:
   ];
   config = {
     nvimx.lsp.enable = true;
+    nvimx.preset.markdown.enable = true;
   };
 }
