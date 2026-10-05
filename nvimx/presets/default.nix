@@ -8,6 +8,7 @@ _:
     ./java.nix
     ./latex.nix
     ./llvm-ir.nix
+    ./markdown.nix
     ./nix.nix
     ./rust.nix
     ./shells.nix
