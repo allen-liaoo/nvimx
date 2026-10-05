@@ -13,6 +13,7 @@
     ./plugins
     ./presets
 
+    ./dap.nix
     ./lsp.nix
     ./treesitter.nix
   ];

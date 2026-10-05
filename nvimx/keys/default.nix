@@ -1,5 +1,6 @@
 {
   imports = [
+    ./dap.nix
     ./editing.nix
     ./lsp.nix
     ./terminal.nix
