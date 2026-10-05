@@ -14,5 +14,8 @@
     plugins.treesitter.grammarPackages = with config.plugins.treesitter.package.builtGrammars; [
       c
     ];
+
+    nvimx.dap.enable = true;
+    plugins.dap-lldb.enable = true;
   };
 }
