@@ -9,6 +9,7 @@
     ./lualine.nix
     ./outline.nix
     #./sidekick.nix
+    ./scrollview.nix
     ./telescope.nix
     ./winresize.nix
     ./yazi.nix
