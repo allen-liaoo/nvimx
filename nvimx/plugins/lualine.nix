@@ -37,9 +37,9 @@
             path = 1;
           }
         ];
-        lualine_x = [ "progress" "filetype" ];
-        lualine_y = [ "diagnostics" ];
-        lualine_z = [ "lsp_status" ];
+        lualine_x = [ "fileformat" "filetype" ];
+        lualine_y = [  "diagnostics" "lsp_status"];
+        lualine_z = [ "location" ];
       };
       tabline = {
         lualine_a = [{
