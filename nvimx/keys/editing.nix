@@ -22,6 +22,13 @@
       options.noremap = true;
       options.expr = true;
     }
+    {
+      key = "P";
+      action = ''v:lua.clipboard_or_default("P")'';
+      mode = [ "n" "x" ]; 
+      options.noremap = true;
+      options.expr = true;
+    }
     # move selected lines up/down while preserving indentation
     {
       key = "J";
