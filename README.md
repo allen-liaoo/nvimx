@@ -63,9 +63,9 @@ use flake
 use nix
 
 # nvimx: use preset
-nix build --out-link .direnv/nvimx "github:allen-liaoo/nvimx/main#PRESET"
+nix build --refresh --out-link .direnv/nvimx "github:allen-liaoo/nvimx/main#PRESET"
 # or use a config provided externally
-nix build --out-link .direnv/nvimx "github:allen-liaoo/nvimx/main?dir=projects/PROJECT"
+nix build --refresh --out-link .direnv/nvimx "github:allen-liaoo/nvimx/main?dir=projects/PROJECT"
 PATH_add .direnv/nvimx/bin
 ```
 
