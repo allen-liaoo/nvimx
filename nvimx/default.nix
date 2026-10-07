@@ -46,6 +46,10 @@
     smartindent = true;
   };
 
+  extraConfigLua = ''
+    vim.api.nvim_set_hl(0, "DiffChange", {}) -- remove line highlights for changed lines in diff
+  '';
+
   clipboard = {
     # register = "unnamedplus"; # manually write yank to system clipboard (and ignore delete ops)
   };
