@@ -6,6 +6,7 @@
     ./flash.nix
     ./git-conflict.nix
     ./grug-far.nix
+    ./illuminate.nix
     ./lualine.nix
     ./outline.nix
     #./sidekick.nix
