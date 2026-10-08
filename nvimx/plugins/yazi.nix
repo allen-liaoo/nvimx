@@ -1,3 +1,5 @@
+# Yazi file manager in neovim
+# https://github.com/mikavilpas/yazi.nvim
 { ... }:
 
 {

@@ -1,3 +1,5 @@
+# Find and replace
+# https://github.com/MagicDuck/grug-far.nvim
 {
   plugins.grug-far.enable = true;
   keymaps = [{

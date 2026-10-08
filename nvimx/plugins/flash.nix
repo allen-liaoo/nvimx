@@ -1,3 +1,5 @@
+# Jump around anywhere on screen
+# https://github.com/folke/flash.nvim
 _:
 
 {

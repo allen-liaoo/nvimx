@@ -1,3 +1,5 @@
+# Document outline
+# https://github.com/stevearc/aerial.nvim
 _:
 
 {

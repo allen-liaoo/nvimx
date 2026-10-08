@@ -1,3 +1,5 @@
+# Autocomplete suggestions
+# https://github.com/Saghen/blink.cmp
 { ... }:
 
 {

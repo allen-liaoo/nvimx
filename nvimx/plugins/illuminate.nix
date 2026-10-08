@@ -1,3 +1,5 @@
+# Cursorline of current word
+# https://github.com/RRethy/vim-illuminate
 { ... }:
 {
   plugins.illuminate = {

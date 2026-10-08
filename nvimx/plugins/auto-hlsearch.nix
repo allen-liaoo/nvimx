@@ -1,3 +1,5 @@
+# Automatically remove search highlight
+# https://github.com/asiryk/auto-hlsearch.nvim
 {
   pkgs,
   ...

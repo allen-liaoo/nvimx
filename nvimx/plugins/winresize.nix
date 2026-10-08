@@ -1,3 +1,5 @@
+# Resize windows
+# https://github.com/pogyomo/winresize.nvim
 {
   inputs,
   pkgs,

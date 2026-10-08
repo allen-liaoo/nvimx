@@ -1,3 +1,5 @@
+# Scrollbar
+# https://github.com/dstein64/nvim-scrollview/
 {
   config,
   lib,
