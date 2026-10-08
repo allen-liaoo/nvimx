@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./auto-hlsearch.nix
     ./blink-cmp.nix
     ./flash.nix
     ./git-conflict.nix
