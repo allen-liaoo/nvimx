@@ -23,7 +23,7 @@ NIX_CONFIG="extra-experimental-featues = nix-command flakes"
 ```
 
 2. Construct a module in a flake (i.e. in `devShells`).
-Nvimx flake outputs `makeNvimxWithModule (system: nvimxModule: ...)` to be used in this case. Presents have options under `nvimx.preset.${PRESET}`, and need to be opted in with `nvimx.preset.${PRESET}.enable = true`.
+Nvimx flake outputs `makeNvimxWithModule (system: nvimxModule: ...)` to be used in this case. Presets have options under `nvimx.preset.${PRESET}`, and need to be opted in with `nvimx.preset.${PRESET}.enable = true`.
 ```nix
 {
   outputs = { self, nixpkgs, nixvim }: let
