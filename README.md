@@ -91,10 +91,12 @@ For more examples, see the [projects/](/projects) directory.
 
 ## Colorscheme
 
-Set `nvimx.matugen.enable = true` to replace the default colorscheme (and the lualine theme) with [matugen.nvim](https://github.com/daedlock/matugen.nvim), which follows your wallpaper. It reads `~/.config/matugen/colors.json` by default; change it with `colorschemes.matugen.settings.colors_path`. A matugen template producing that file is at [templates/matugen.json](/templates/matugen.json):
+Set `nvimx.colorscheme` to the name of any nixvim colorscheme (under `colorschemes`) to use it instead of the default `onedark`.
+
+Set `nvimx.matugen.enable = true` to replace the chosen colorscheme (and the lualine theme) with [matugen.nvim](https://github.com/daedlock/matugen.nvim), which follows your wallpaper. It reads `~/.config/matugen/colors.json` by default; change it with `colorschemes.matugen.settings.colors_path`. A matugen template producing that file is at [assets/matugen-template.json](/assets/matugen-template.json):
 ```toml
 [templates.nvimx]
-input_path = '/path/to/nvimx/templates/matugen.json'
+input_path = '/path/to/nvimx/assets/matugen-template.json'
 output_path = '~/.config/matugen/colors.json'
 ```
 

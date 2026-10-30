@@ -39,9 +39,8 @@
     }
 
     (lib.mkIf config.nvimx.matugen.enable {
-      colorschemes.onedark.enable = lib.mkForce false;
-      colorschemes.matugen.enable = true;
-      colorscheme = lib.mkForce "matugen";
+      # replaces whichever colorscheme was chosen, so only matugen is enabled
+      nvimx.colorscheme = lib.mkForce "matugen";
       # defaults to `colorscheme`, but bat has no matugen theme
       plugins.telescope.highlightTheme = lib.mkDefault null;
 
