@@ -10,6 +10,8 @@ Nvimx exports different module/package presets:
 
 Additionally, you can set `nvimx.treesitter.enableAllGrammars = true` to get ts for all languages without individually enabling variants.
 
+Set `nvimx.matugen.enable = true` to replace the default colorscheme (and the lualine theme) with [matugen.nvim](https://github.com/daedlock/matugen.nvim), which follows your wallpaper. It reads `~/.config/matugen/colors.json` by default; change it with `colorschemes.matugen.settings.colors_path`.
+
 ## Usage
 1. Run directly:
 ```bash

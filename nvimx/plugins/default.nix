@@ -9,6 +9,7 @@
     ./grug-far.nix
     ./illuminate.nix
     ./lualine.nix
+    ./matugen.nix
     ./outline.nix
     #./sidekick.nix
     ./scrollview.nix

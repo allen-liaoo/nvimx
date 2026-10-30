@@ -10,6 +10,10 @@
       url = "github:pogyomo/winresize.nvim";
       flake = false;
     };
+    matugen-nvim = {
+      url = "github:daedlock/matugen.nvim";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, nixvim, ... }@inputs: let

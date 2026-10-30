@@ -21,6 +21,22 @@
         "type": "github"
       }
     },
+    "matugen-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777401100,
+        "narHash": "sha256-J5bAD07kF1a7BAWzzIGSsQKns4rBWb1tK606Bh0pR00=",
+        "owner": "daedlock",
+        "repo": "matugen.nvim",
+        "rev": "835a2f4c7b32e5e0fa57f3595a04a638ff74d8bc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "daedlock",
+        "repo": "matugen.nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1790822859,
@@ -61,6 +77,7 @@
     },
     "root": {
       "inputs": {
+        "matugen-nvim": "matugen-nvim",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "winresize": "winresize"
