@@ -13,18 +13,12 @@
     ./plugins
     ./presets
 
+    ./colorscheme.nix
     ./dap.nix
     ./lsp.nix
     ./treesitter.nix
   ];
   enableMan = false;
-
-  colorschemes.onedark = {
-    enable = true;
-    settings = {
-      style = "cool";
-    };
-  };
 
   globals = {
     mapleader = "\\"; # enter
