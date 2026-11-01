@@ -8,8 +8,8 @@
 
 let
   gitsignsPriority = 20;
-  gitsignsAddSymbol = "▕"; # "▏"
-  gitsignsChangeSymbol = "▕"; # "▏"
+  gitsignsAddSymbol = "▏";
+  gitsignsChangeSymbol = "▏";
   gitsignsDeleteSymbol = "-";
 in
 {
