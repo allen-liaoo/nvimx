@@ -14,6 +14,13 @@ in
     lsp.servers.jdtls = {
       enable = true;
       activate = true;
+      # jdtls sometimes computes semantic tokens from a stale AST, so highlights drift onto
+      # the wrong ranges after edits (eclipse.jdt.ls#2709); fall back to treesitter instead
+      config.on_init.__raw = ''
+        function(client)
+          client.server_capabilities.semanticTokensProvider = nil
+        end
+      '';
     };
 
     plugins.treesitter.grammarPackages = with config.plugins.treesitter.package.builtGrammars; [
