@@ -81,6 +81,7 @@ For more examples, see the [projects/](/projects) directory.
   | `latex` | LaTeX | ✅ | [texlab](https://github.com/latex-lsp/texlab) | — | 
   | `llvm-ir` | LLVM IR | ✅ | [llvm-ir-lsp](https://github.com/indoorvivants/llvm-ir-lsp)* | — |
   | `markdown`** | Markdown | ✅ | [marksman](https://github.com/artempyanykh/marksman) | — | 
+  | `neorg` | Norg | ✅ | [neorg-interim-ls](https://github.com/benlubas/neorg-interim-ls) | — |
   | `nix` | Nix | ✅ | [nixd](https://github.com/nix-community/nixd/) | — |
   | `rust` | Rust | ✅ | [rust-analyzer](https://github.com/rust-lang/rust-analyzer) | [dap-lldb](https://github.com/julianolf/nvim-dap-lldb/) |
   | `shells` | bash, fish, zsh | ✅ | [bashls](https://github.com/bash-lsp/bash-language-server) (bash only) | — |

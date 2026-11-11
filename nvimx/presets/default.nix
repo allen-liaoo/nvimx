@@ -9,6 +9,7 @@ _:
     ./latex.nix
     ./llvm-ir.nix
     ./markdown.nix
+    ./neorg.nix
     ./nix.nix
     ./rust.nix
     ./shells.nix

@@ -13,6 +13,7 @@ in
   latex = base // { nvimx.preset.latex.enable = true; };
   llvm-ir = base // { nvimx.preset.llvm-ir.enable = true; };
   markdown = base // { nvimx.preset.markdown.enable = true; };
+  neorg = base // { nvimx.preset.neorg.enable = true; };
   nix = base // { nvimx.preset.nix.enable = true; };
   rust = base // { nvimx.preset.rust.enable = true; };
   shells = base // { nvimx.preset.shells.enable = true; };
