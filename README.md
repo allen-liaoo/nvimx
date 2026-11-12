@@ -80,6 +80,7 @@ For more examples, see the [projects/](/projects) directory.
   | `java` | Java | ✅ | [jdtls](https://github.com/eclipse-jdtls/eclipse.jdt.ls) | [java-debug](https://github.com/microsoft/java-debug) via jdtls |
   | `latex` | LaTeX | ✅ | [texlab](https://github.com/latex-lsp/texlab) | — | 
   | `llvm-ir` | LLVM IR | ✅ | [llvm-ir-lsp](https://github.com/indoorvivants/llvm-ir-lsp)* | — |
+  | `lua` | Lua | ✅ | [lua-language-server](https://github.com/LuaLS/lua-language-server) | — |
   | `markdown`** | Markdown | ✅ | [marksman](https://github.com/artempyanykh/marksman) | — | 
   | `nix` | Nix | ✅ | [nixd](https://github.com/nix-community/nixd/) | — |
   | `rust` | Rust | ✅ | [rust-analyzer](https://github.com/rust-lang/rust-analyzer) | [dap-lldb](https://github.com/julianolf/nvim-dap-lldb/) |
