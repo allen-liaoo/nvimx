@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "coil-nvim": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nvimx": []
+      },
+      "locked": {
+        "lastModified": 1794596133,
+        "narHash": "sha256-tckaxIfP5oYIa9orPtuWh5scuqVGsghba87DDBBvPdg=",
+        "owner": "allen-liaoo",
+        "repo": "coil.nvim",
+        "rev": "3abd4ed0f9ac7736c8ef4aaafd1f29b4c65cc88a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "allen-liaoo",
+        "repo": "coil.nvim",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -61,6 +82,7 @@
     },
     "root": {
       "inputs": {
+        "coil-nvim": "coil-nvim",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "winresize": "winresize"

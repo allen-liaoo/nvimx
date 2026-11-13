@@ -10,6 +10,11 @@
       url = "github:pogyomo/winresize.nvim";
       flake = false;
     };
+    coil-nvim = {
+      url = "github:allen-liaoo/coil.nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nvimx.follows = ""; # coil's dev shell uses nvimx: point it back here, not at a second copy
+    };
   };
 
   outputs = { self, nixpkgs, nixvim, ... }@inputs: let
@@ -32,6 +37,7 @@
         module = [
           m
           (import ./nvimx)
+          inputs.coil-nvim.nixvimModules.default
           { _module.args = moduleArgs system; }
         ];
       };
