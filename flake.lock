@@ -8,11 +8,11 @@
         "nvimx": []
       },
       "locked": {
-        "lastModified": 1794672509,
-        "narHash": "sha256-LtwKbc35LAGWXUG/tuOvcGvkznmqq9T4H6KCJlWi0Rs=",
+        "lastModified": 1794782927,
+        "narHash": "sha256-GXQ2fBB3Fyql2PybMzhhnRR0vDvuRlHp6BPnoucqbcs=",
         "owner": "allen-liaoo",
         "repo": "coil.nvim",
-        "rev": "fe147c557d3afc7fc5b443aa71ef6f0568c32490",
+        "rev": "01a8122d80a6b933dea993a48bedfe7670595f9c",
         "type": "github"
       },
       "original": {
