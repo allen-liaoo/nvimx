@@ -16,7 +16,7 @@ writeShellApplication {
     shopt -s nullglob
     cd "$(git rev-parse --show-toplevel)"
 
-    for f in projs/*/flake.nix; do
+    for f in projects/*/flake.nix; do
       dir=$(dirname "$f")
       echo "re-locking $dir"
       nix flake update nvimx --flake "./$dir"  # re-sync nvimx + its transitive pins
