@@ -2,6 +2,11 @@
 # https://github.com/stevearc/oil.nvim
 # https://github.com/allen-liaoo/coil.nvim
 {
+  pkgs,
+  ...
+}:
+
+{
   plugins.oil = {
     enable = true;
     settings = {
@@ -12,7 +17,7 @@
         "g?" = { __unkeyed-1 = "actions.show_help"; mode = "n"; };
         "<CR>" = { __unkeyed-1 = "actions.select"; };
         "<C-v>" = { __unkeyed-1 = "actions.select"; opts.vertical = true; };
-        "<C-h>" = { __unkeyed-1 = "actions.select"; opts.horizontal = true; };
+        "<C-H>" = { __unkeyed-1 = "actions.select"; opts.horizontal = true; };
         "<C-t>" = { __unkeyed-1 = "actions.select"; opts.tab = true; };
         "<C-p>" = { __unkeyed-1 = "actions.preview"; };
         "<C-c>" = { __unkeyed-1 = "actions.close"; mode = "n"; };
@@ -26,7 +31,7 @@
         "g." = { __unkeyed-1 = "actions.toggle_hidden"; mode = "n"; };
         "g\\" = { __unkeyed-1 = "actions.toggle_trash"; mode = "n"; };
         "gd" = {
-          desc = "Toggle file detail view";
+          desc = "Toggle detailed column view";
           callback.__raw = ''function()
             -- see luaConfig.pre
             oil_detail = not oil_detail
@@ -53,7 +58,11 @@
       win_options = {
         signcolumn = "yes:2";
       };
+      standalone = {
+        edit_here = true;
+      };
     };
+    # See keymap to toggle detailed column view
     luaConfig.pre = ''
       local oil_detail = false
     '';
@@ -61,8 +70,25 @@
 
   plugins.oil-git-status.enable = true;
 
+  extraPlugins = [
+    pkgs.vimPlugins.oil-lsp-diagnostics-nvim
+  ];
+  extraConfigLua = ''
+    require('oil-lsp-diagnostics').setup({});
+  '';
+
   # coil module imported in flake.nix
-  plugins.coil.enable = true;
+  plugins.coil = {
+    enable = true;
+    settings = {
+      open_external = true;
+      edit_here = true;
+      standalone = {
+        open_external = true;
+        edit_here = true;
+      };
+    };
+  };
 
   keymaps = [
     {

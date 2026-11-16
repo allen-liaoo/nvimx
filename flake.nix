@@ -13,7 +13,6 @@
     coil-nvim = {
       url = "github:allen-liaoo/coil.nvim";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nvimx.follows = ""; # coil's dev shell uses nvimx: point it back here, not at a second copy
     };
   };
 
