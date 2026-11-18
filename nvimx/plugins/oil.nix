@@ -17,7 +17,7 @@
         "g?" = { __unkeyed-1 = "actions.show_help"; mode = "n"; };
         "<CR>" = { __unkeyed-1 = "actions.select"; };
         "<C-v>" = { __unkeyed-1 = "actions.select"; opts.vertical = true; };
-        "<C-H>" = { __unkeyed-1 = "actions.select"; opts.horizontal = true; };
+        "<C-b>" = { __unkeyed-1 = "actions.select"; opts.horizontal = true; };
         "<C-t>" = { __unkeyed-1 = "actions.select"; opts.tab = true; };
         "<C-p>" = { __unkeyed-1 = "actions.preview"; };
         "<C-c>" = { __unkeyed-1 = "actions.close"; mode = "n"; };
@@ -32,34 +32,37 @@
         "g\\" = { __unkeyed-1 = "actions.toggle_trash"; mode = "n"; };
         "gd" = {
           desc = "Toggle detailed column view";
-          callback.__raw = ''function()
-            -- see luaConfig.pre
-            oil_detail = not oil_detail
-            if oil_detail then
-              require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
-            else
-              require("oil").set_columns({ "icon", "permissions" })
+          callback.__raw = ''
+            function()
+              -- see luaConfig.pre
+              oil_detail = not oil_detail
+              if oil_detail then
+                require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+              else
+                require("oil").set_columns({ "icon", "permissions" })
+              end
             end
-          end'';
+          '';
         };
       };
       delete_to_trash = true;
       watch_for_changes = true;
       # Return true to automatically git add/mv/rm files
       git = {
-        mv.__raw = ''function(src_path, dest_path)
-          return true
-        end'';
-        rm.__raw = ''function(path)
-          return true
-        end'';
+        mv.__raw = ''
+          function(src_path, dest_path)
+            return true
+          end
+        '';
+        rm.__raw = ''
+          function(path)
+            return true
+          end
+        '';
       };
       # for oil-git-status
       win_options = {
         signcolumn = "yes:2";
-      };
-      standalone = {
-        edit_here = true;
       };
     };
     # See keymap to toggle detailed column view
