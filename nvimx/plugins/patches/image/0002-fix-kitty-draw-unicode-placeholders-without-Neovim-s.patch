@@ -1,0 +1,68 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Allen Liao <wcliaw610@gmail.com>
+Date: Wed, 18 Nov 2026 14:06:04 -0500
+Subject: [PATCH 2/2] fix(kitty): draw unicode placeholders without Neovim's
+ attributes
+
+Placeholders are written to the terminal past Neovim, setting only their
+foreground, so they took whatever attributes Neovim's last drawn cell
+left on, and kitty draws those over the image: with the word under the
+cursor underlined (vim-illuminate, say), every row of the image got a
+line across it.
+
+Turn the attributes off first, and set the background of the image's
+window as Neovim draws it (NormalNC when it isn't focused, else Normal):
+placeholder cells stay on screen after the image is cleared wherever
+Neovim has nothing new to draw, and with the attributes only reset they
+showed the terminal's own background there.
+---
+ lua/image/backends/kitty/helpers.lua | 22 ++++++++++++++++++++--
+ lua/image/backends/kitty/init.lua    |  2 +-
+ 2 files changed, 21 insertions(+), 3 deletions(-)
+
+diff --git a/lua/image/backends/kitty/helpers.lua b/lua/image/backends/kitty/helpers.lua
+index 0133c22..ee687cc 100644
+--- a/lua/image/backends/kitty/helpers.lua
++++ b/lua/image/backends/kitty/helpers.lua
+@@ -118,8 +118,26 @@ local write_graphics = function(config, data)
+   end
+ end
+ 
+-local write_placeholder = function(image_id, x, y, width, height)
+-  local foreground = "\x1b[38;5;" .. image_id .. "m"
++-- The sequence that sets the background to highlight group `name`'s, or nil when it has none
++local get_background = function(name)
++  local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
++  if vim.o.termguicolors then
++    if not hl.bg then return nil end
++    local r, g, b = bit.rshift(hl.bg, 16), bit.band(bit.rshift(hl.bg, 8), 0xff), bit.band(hl.bg, 0xff)
++    return ("\x1b[48;2;%d;%d;%dm"):format(r, g, b)
++  end
++  if hl.ctermbg then return ("\x1b[48;5;%dm"):format(hl.ctermbg) end
++end
++
++local write_placeholder = function(image_id, x, y, width, height, window)
++  -- Placeholders are written past Neovim, so they'd take whatever attributes its last drawn cell
++  -- left on, and kitty draws those over the image (an underline becomes a line across every row).
++  -- Turn them off, and use the window's background as Neovim draws it: placeholder cells stay on
++  -- screen after the image is cleared, wherever Neovim has nothing new to draw.
++  local background
++  if window and window ~= vim.api.nvim_get_current_win() then background = get_background("NormalNC") end
++  background = background or get_background("Normal") or ""
++  local foreground = "\x1b[0m" .. background .. "\x1b[38;5;" .. image_id .. "m"
+   local restore = "\x1b[39m"
+ 
+   write(foreground)
+diff --git a/lua/image/backends/kitty/init.lua b/lua/image/backends/kitty/init.lua
+index dd9cb7c..45c1d18 100644
+--- a/lua/image/backends/kitty/init.lua
++++ b/lua/image/backends/kitty/init.lua
+@@ -91,7 +91,7 @@ backend.render = function(image, x, y, width, height)
+       display_virtual_placeholder = 1,
+       placement_id = image.internal_id,
+     })
+-    helpers.write_placeholder(image.internal_id, x, y, width, height)
++    helpers.write_placeholder(image.internal_id, x, y, width, height, image.window)
+ 
+     image.is_rendered = true
+     backend.state.images[image.id] = image

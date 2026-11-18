@@ -1,0 +1,27 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Allen Liao <wcliaw610@gmail.com>
+Date: Wed, 18 Nov 2026 13:54:35 -0500
+Subject: [PATCH] fix(kitty): place unicode placeholders in the right column
+
+write_placeholder() moved the cursor to column x, but x is 0-based, as
+y is (which it already adds 1 to), so every placeholder image was drawn
+one column left of where it was meant to be. The normal kitty method
+moves to x + 1.
+---
+ lua/image/backends/kitty/helpers.lua | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/lua/image/backends/kitty/helpers.lua b/lua/image/backends/kitty/helpers.lua
+index cd20a74..0133c22 100644
+--- a/lua/image/backends/kitty/helpers.lua
++++ b/lua/image/backends/kitty/helpers.lua
+@@ -124,7 +124,8 @@ local write_placeholder = function(image_id, x, y, width, height)
+ 
+   write(foreground)
+   for i = 0, height - 1 do
+-    move_cursor(x, y + i + 1)
++    -- x is 0-based, like y; the terminal's columns start at 1
++    move_cursor(x + 1, y + i + 1)
+     for j = 0, width - 1 do
+       write(codes.placeholder .. codes.diacritics[i + 1] .. codes.diacritics[j + 1])
+     end
