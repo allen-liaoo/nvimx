@@ -1,0 +1,67 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Allen Liao <wcliaw610@gmail.com>
+Date: Wed, 18 Nov 2026 13:40:02 -0500
+Subject: [PATCH 2/2] fix: draw the marks again after oil redraws a buffer
+
+oil redraws a buffer by replacing all of its lines: on a refetch,
+watch_for_changes, `g.`, a new sort, or another plugin asking it to
+list a directory again. That moved every mark off its entry, and they
+stayed there until the next DiagnosticChanged. Watch the buffer's lines
+and redraw after each change.
+---
+ lua/oil-lsp-diagnostics.lua | 35 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+diff --git a/lua/oil-lsp-diagnostics.lua b/lua/oil-lsp-diagnostics.lua
+index bfc8858..959ba54 100644
+--- a/lua/oil-lsp-diagnostics.lua
++++ b/lua/oil-lsp-diagnostics.lua
+@@ -117,6 +117,38 @@ local function add_lsp_extmarks(buffer)
+     end
+ end
+ 
++local attached = {}
++
++-- oil redraws a buffer by replacing all of its lines (on a refetch, watch_for_changes, `g.`, a
++-- new sort, ...), which moves every mark off its entry. Draw them again once a change is done.
++local function redraw_on_change(buffer)
++    if attached[buffer] then
++        return
++    end
++    attached[buffer] = true
++
++    local pending = false
++    vim.api.nvim_buf_attach(buffer, false, {
++        -- Runs inside the change itself, so only schedule the redraw: one for however many
++        -- line changes a render makes
++        on_lines = function()
++            if pending then
++                return
++            end
++            pending = true
++            vim.schedule(function()
++                pending = false
++                if vim.api.nvim_buf_is_valid(buffer) and vim.b[buffer].oil_ready then
++                    add_lsp_extmarks(buffer)
++                end
++            end)
++        end,
++        on_detach = function()
++            attached[buffer] = nil
++        end,
++    })
++end
++
+ local function setup(config)
+     current_config = vim.tbl_extend("force", default_config, config or {})
+ 
+@@ -125,6 +157,9 @@ local function setup(config)
+         callback = function(event)
+             local buffer = event.buf
+ 
++            -- Before the check below: a reload (:edit) detaches, and doesn't clear the variable
++            redraw_on_change(buffer)
++
+             if vim.b[buffer].oil_lsp_started then
+                 return
+             end

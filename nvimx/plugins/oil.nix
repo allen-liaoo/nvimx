@@ -70,8 +70,14 @@
 
   plugins.oil-git-status.enable = true;
 
+  # oil-lsp-diagnostics (patched to fix errors 1. when not browsing local dir, 2. not refreshing when navigating)
   extraPlugins = [
-    pkgs.vimPlugins.oil-lsp-diagnostics-nvim
+    (pkgs.vimPlugins.oil-lsp-diagnostics-nvim.overrideAttrs (old: {
+      patches = (old.patches or [ ]) ++ [
+        ./patches/oil-lsp-diagnostics/0001-fix-skip-oil-buffers-that-aren-t-local-directories.patch
+        ./patches/oil-lsp-diagnostics/0002-fix-draw-the-marks-again-after-oil-redraws-a-buffer.patch
+      ];
+    }))
   ];
   extraConfigLua = ''
     require('oil-lsp-diagnostics').setup({});
