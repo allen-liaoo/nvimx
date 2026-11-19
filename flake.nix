@@ -60,6 +60,7 @@
             nixpkgsName = "nixpkgs";
             flakeInputs.nixvim = "nixvimConfigurations.${system}.default";
           };
+          plugins.coil.images.enable = true;
         };
         nixvimPkg = self.makeNvimxWithModule system nixvimModule;
         nvimx-update = pkgs.callPackage ./pkgs/nvimx-update.nix { };

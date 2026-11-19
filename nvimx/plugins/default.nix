@@ -4,18 +4,18 @@
   imports = [
     ./auto-hlsearch.nix
     ./blink-cmp.nix
-    ./oil.nix
     ./flash.nix
     ./git-conflict.nix
     ./grug-far.nix
     ./illuminate.nix
+    ./image.nix
+    ./image.nix
     ./lualine.nix
+    ./oil.nix
     ./outline.nix
-    #./sidekick.nix
     ./scrollview.nix
     ./telescope.nix
     ./winresize.nix
-    # ./yazi.nix
   ];
 
   plugins = {
